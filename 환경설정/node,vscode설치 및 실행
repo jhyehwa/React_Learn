@@ -1,0 +1,19 @@
+[환경설정]
+
+	1. node.js 설치
+	2. yarn 설치
+	3. 리액트 실습 경로 지정
+	4. create-react-app
+		■ npx create-react-app my-app
+		■ cd my-app
+		■ npm start
+	5. 명령 프롬프트에서 해당 경로로 이동하여 위와 동일한 커맨드를 실행
+		■ 새 창이 뜨면서 React App 화면이 나오면 성공
+	6. 비주얼 스튜디오 실행
+	7. File>Open folder>my-app 폴더 열기
+	8. Terminal>New Terminal 실행
+		■ 해당 터미널에 my-app 폴더의 경로가 나와야 제대로 폴더가 열린 것
+	9. 터미널에서 yarn start 입력
+		■ 새 창이 뜨면서 React App 화면이 나오면 성공
+
+	- 기본적으로 react 실습을 하려면 프롬프트창에 npm start 또는 yarn start를 한 상태로 프롬프트창을 종료하면 안됨!!!
