@@ -1,0 +1,24 @@
+[컴포넌트]
+
+	> 컴포넌트 만들기
+		■ 기본적으로 <App />과 같은 것들을 컴포넌트라 함
+		■ react는 컴포넌트로 동작함
+		■ app.js
+			▶ <div>리액트 처음 배워보기</div>를 return하는 것
+				→ 자바스크립트 + HTML = JSX
+			
+		1. .js를 만들면 반드시 import React from 'react';를 작성해주어야 함
+			→ 이것을 하지 않으면 react는 여기에 jsx가 있는 component를 사용하는 것을 이해하지 못함
+		2. 이후, html을 리턴하는 함수를 만들어야 함
+		3. 그리고 이를 외부에서 컴포넌트로 사용할 수 있도록 export 해주어야 함
+		
+	> 컴포넌트 사용하기
+		1. index.js
+		2. import Lemon from './Lemon';을 추가 (./ 같은 디렉토리 내에 있다는 의미)
+		3. <App /> 옆에 <Lemon />을 추가
+			→ 에러 발생
+				■ 이유: react application은 하나의 컴포넌트만을 rendering해야 하기 때문
+			
+		1. app.js
+		2. import Lemon from './Lemon';을 추가
+			▶ <div></div> 사이에 <Lemon /> 추가

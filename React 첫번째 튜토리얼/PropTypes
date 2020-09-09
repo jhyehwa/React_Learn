@@ -1,0 +1,63 @@
+[PropTypes]
+
+	■ 부모 컴포넌트로부터 전달받은 Props가 우리가 예상한 Props가 맞는지 확인해야 할 필요가 있음
+		→ 이 역활을 해주는 것이 PropTypes
+
+		1. 프롬프트 창에서 설치
+		2. npm i prop-types
+		3. 설치 후, package.json 파일에서 dependencies>prop-types 있는지 확인
+
+		function Fruit({name, picture, rating}) {
+		  return <div>
+		    I like {name} <br/>
+		    <img src = {picture} alt = ""/> <br />
+		    {rating}/5.0
+		  </div>
+		}
+		
+		Fruit.propTypes = {
+		  name : PropTypes.string.isRequired,
+		  picture : PropTypes.string.isRequired,
+		  rating : PropTypes.number
+		}
+		
+		const fruitList = [
+		  {
+		    // 유니크한 key 가지기
+		    id : 1,
+		    name : 'apple',
+		    image : 'https://image.shutterstock.com/image-photo/fresh-red-apple-isolated-on-260nw-254938384.jpg',
+		    rating : 5
+		  },
+		  {
+		    // 유니크한 key 가지기
+		    id : 2,
+		    name : 'orange',
+		    image : 'https://image.shutterstock.com/image-vector/abstract-orange-icon-vector-flat-260nw-1104205634.jpg',
+		    rating : 4.5
+		  },
+		  {
+		    // 유니크한 key 가지기
+		    id : 3,
+		    name : 'blueberry',
+		    image : 'https://image.shutterstock.com/image-photo/blueberries-isolated-260nw-722035450.jpg',
+		    rating : 4.2
+		  },
+		  {
+		    // 유니크한 key 가지기
+		    id : 4,
+		    name : 'watermelon',
+		    image : 'https://en.pimg.jp/050/595/319/1/50595319.jpg',
+		    rating : 5
+		  }
+		];
+		
+		function App() {
+		  return (
+		    <div>
+		      {fruitList.map(element => <Fruit key = {element.id} name = {element.name} picture = {element.image} rating = {element.rating} />)}
+		    </div>
+		  );
+		}
+		
+		export default App;

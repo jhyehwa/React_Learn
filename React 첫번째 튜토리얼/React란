@@ -1,0 +1,30 @@
+[React]
+
+	> React란?
+		■ UI를 만들수 있는 라이브러리
+		■ cotroller, ajax, 라우터 등 내장하고 있지 않아 가벼움
+	
+	- 프레임 워크 : 틀
+	- 라이브러리 : 필요한 곳에 가져다 쓰는 것
+
+	> React의 핵심
+		■ 가상 돔(Virtual DOM) 사용
+
+	> React.js 장/단점
+		1. 장점
+			■ Virtual DOM 사용
+			■ 배우기 간단
+			■ 복잡하지 않음
+			■ 뛰어난 Garbage Collection
+			■ 뛰어난 메모리 관리
+			■ 뛰어난 성능
+			■ 서버&클라이언트 렌더링
+				→ 초기 구동 딜레이 & SEO(검색 엔진 최적화)
+			■ 매우 간편한 UI 수정 및 재사용
+		2. 단점
+			■ 보여지는 부분만 관여 해 데이터 모델링, 라우터 등 기능이 없음
+			■ IE8 이하 지원 X
+
+	> React 동작 방식
+		■ React로 만든 모든 application을 index.html의 <div> 태그 사이로 밀어 넣음
+		■ index.js에서 ReactDOM.render()를 볼 수 있는데, reactDOM이 render하는데 document.getElementById('root')는 id가 'root'인 곳을 찾겠다는 의미

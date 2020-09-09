@@ -1,0 +1,119 @@
+[동적 컴포넌트 생성(map 함수)]
+
+	> 자바스크립트 map 함수
+		■ temp라는 이름의 array를 생성
+			▶ const temp = ['red', 'orange', 'yellow']
+
+		■ 'element를 출력하고 0을 리턴'
+			▶ const temp = ['red', 'orange', 'yellow']
+			     const temp2 = temp.map(element => {
+			     console.log(element)
+			     return 0
+			   })
+			
+			  → "red"
+			  → "orange"
+			  → "yellow"
+			  → Array[0, 0, 0]
+			
+		■ map 함수는 특정 function을 element마다 수행하는데 현재 map함수를 실행하는 코드
+			▶ element => {
+			     console.log(element)
+			     return 0
+			   }
+			
+		■ 기존의 element를 사용하면서 새로운 내용 추가 된 array
+			▶ return element + 'love';
+			
+			  → Array["redlove", "orangelove", "yellowlove"]
+			  
+[동적 컴포넌트 생성]
+	function Fruit({name, picture}) {
+	  return <div>
+	    I like {name} <br/>
+	    <img src = {picture}/>  
+	  </div>
+	}
+	
+	const fruitList = [
+	  {
+	    name : 'apple',
+	    image : 'https://image.shutterstock.com/image-photo/fresh-red-apple-isolated-on-260nw-254938384.jpg'
+	  },
+	  {
+	    name : 'orange',
+	    image : 'https://image.shutterstock.com/image-vector/abstract-orange-icon-vector-flat-260nw-1104205634.jpg'
+	  },
+	  {
+	    name : 'blueberry',
+	    image : 'https://image.shutterstock.com/image-photo/blueberries-isolated-260nw-722035450.jpg'
+	  },
+	  {
+	    name : 'watermelon',
+	    image : 'https://en.pimg.jp/050/595/319/1/50595319.jpg'
+	  }
+	];
+	
+	function renderFunction(element) {
+	  return <Fruit name = {element.name} picture = {element.image} />
+	}
+	
+	function App() {
+	  return (
+	    <div>
+	      {/* 이름만 출력 */}
+	      {fruitList.map(element => <Fruit name = {element.name}/>)}
+	
+	      {/* 이름 + 사진 출력 */}
+	      {fruitList.map(element => <Fruit name = {element.name} picture = {element.image}/>)}
+	      {fruitList.map(renderFunction)}
+	    </div>
+	  );
+	}
+	
+	export default App;
+		  
+[유니크한 key 가지기]
+	function Fruit({name, picture}) {
+	  return <div>
+	    I like {name} <br/>
+	    <img src = {picture} alt = ""/>
+	  </div>
+	}
+	
+	const fruitList = [
+	  {
+	    // 유니크한 key 가지기
+	    id : 1,
+	    name : 'apple',
+	    image : 'https://image.shutterstock.com/image-photo/fresh-red-apple-isolated-on-260nw-254938384.jpg'
+	  },
+	  {
+	    // 유니크한 key 가지기
+	    id : 2,
+	    name : 'orange',
+	    image : 'https://image.shutterstock.com/image-vector/abstract-orange-icon-vector-flat-260nw-1104205634.jpg'
+	  },
+	  {
+	    // 유니크한 key 가지기
+	    id : 3,
+	    name : 'blueberry',
+	    image : 'https://image.shutterstock.com/image-photo/blueberries-isolated-260nw-722035450.jpg'
+	  },
+	  {
+	    // 유니크한 key 가지기
+	    id : 4,
+	    name : 'watermelon',
+	    image : 'https://en.pimg.jp/050/595/319/1/50595319.jpg'
+	  }
+	];
+	
+	function App() {
+	  return (
+	    <div>
+	       {fruitList.map(element => <Fruit key = {element.id} name = {element.name} picture = {element.image} />)}
+	    </div>
+	  );
+	}
+	
+	export default App;

@@ -1,0 +1,38 @@
+[JSX와 props]
+
+	> JSX와 props
+		1. 같은 js 파일 내부에서 컴포넌트 만들기
+			■ src 폴더 내에 있는 Lemon.js 삭제
+			■ app.js에서 import Lemon from './Lemon';을 지우기
+			■ app.js에 Lemon함수 정의
+				
+				▶ function Lemon() {
+					return <div>I Like Lemon</div>
+				  }
+				
+		2. 컴포넌트 재사용하기
+			■ <Lemon />을 <div> 안에 여러 번 불러도 가능
+
+		3. props 사용
+			■ <Lemon />을 <Lemon name = 'yellow' />로 수정
+			■ Lemon 함수 수정
+				
+				▶ function Lemon(props) {
+					console.log(props)
+					return <div>I Like Lemon</div>
+				   }
+				
+				  → name : "yellow"로 전달되어 콘솔에 출력
+				
+				▶ function Lemon(props) {
+					console.log(props.name)
+					return <div>I Like Lemon</div>
+				   }
+				
+				  → yellow만 콘솔에 출력
+				
+				▶ function Lemon({name}) {
+					return <div>I Like {name}</div>
+				   }
+				
+				  → I like Lemon 대신 I like yellow가 출력
