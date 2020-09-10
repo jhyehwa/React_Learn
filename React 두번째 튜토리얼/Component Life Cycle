@@ -1,0 +1,115 @@
+[Component Life Cycle]
+
+	> Component Lifr Cycle
+		■ 기본적으로 react가 컴포넌트를 생성, 제거하는 방법
+
+	> 마운트(mount)
+		■ 아래 메서드들은 컴초넌트의 인스턴스가 생성되어 DOM 상에 삽입될 때에 순서대로 호출 됨
+	
+	> 생성자(constructor)
+		■ 생성자는 자바스크립트에서 class를 만들 때 호출 됨
+		
+		▶ class App extends React.Component {
+			    constructor(props) {
+			        super(props);
+			        console.log("React")
+			    }
+			    state = {
+			        count : 0
+			    };
+			    add = () => {
+			        this.setState(current => ({count : current.count + 1}))
+			    };
+			    minus = () => {
+			        this.setState(current => ({count : current.count ■ 1}))
+			    };
+			    
+			    render() {
+			        console.log('render');
+			        return (
+			            <div>
+			                <h1>리액트 배우기 {this.state.count}일차</h1>
+			                <button onClick = {this.add}>증가</button>
+			                <button onClick = {this.minus}>감소</button>
+			            </div>
+			        );
+			    }
+			}
+			
+			export default App;
+
+	> render
+		■ 컴포넌트가 마운트될 때, 컴포넌트가 스크린에 표시될 때 생성자를 호출
+		■ 그 후에 render가 호출
+	
+	> componentDidMount
+		■ 컴포넌트가 만들어지고 첫 렌더링을 다 마친 후 실행되는 함수
+		■ 기본적으로 이 함수는 "이 컴포넌트는 처음 render됐어"라는 사실을 알려줌 
+
+		▶ class App extends React.Component {
+			    constructor(props) {
+			        super(props);
+			        console.log("React")
+			    }
+			    state = {
+			        count : 0
+			    };
+			    add = () => {
+			        this.setState(current => ({count : current.count + 1}))
+			    };
+			    minus = () => {
+			        this.setState(current => ({count : current.count ■ 1}))
+			    };
+			    componentDidMount() {
+			        console.log("component rendered")
+			    }
+			    
+			    render() {
+			        console.log('render');
+			        return (
+			            <div>
+			                <h1>리액트 배우기 {this.state.count}일차</h1>
+			                <button onClick = {this.add}>증가</button>
+			                <button onClick = {this.minus}>감소</button>
+			            </div>
+			        );
+			    }
+			}
+			
+			export default App;
+
+	> 업데이트(update)
+		■ 현재 진행하는 실습에서 증가 버튼이나 감소 버튼을 눌렀을 때 이루어지는 것
+		
+		1. static getFerivedStateFromProps
+		2. shouldComponentUpdate
+			§ 업데이트를 할 것인지 말 것인지 결정하는 것에 대한 것
+		3. render
+			§ 위 두 가지가 결정되면 render가 실행
+		4. getSnapshotBeforeUpdate
+		5. componentDidUpdate
+
+		▶ componentDidMount() {
+		        console.log("component rendered")
+		    }
+		    componentDidUpdate() {
+		        console.log("component update")
+		    }
+		    
+		    render() {
+		        console.log('render');
+		        return (
+		            <div>
+		                <h1>리액트 배우기 {this.state.count}일차</h1>
+		                <button onClick = {this.add}>증가</button>
+		                <button onClick = {this.minus}>감소</button>
+		            </div>
+		        );
+		    }
+		
+	> 언마운트(unmount)
+		■ 컴포넌트가 죽을 때 사용
+		■ 페이지를 바꾸거나, state를 사용해서 컴포넌트를 교체
+
+		1. componentWillUnmount
+			■ 컴포넌트가 죽을 때 호출되는 함수

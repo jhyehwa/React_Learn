@@ -1,0 +1,106 @@
+[State]
+
+	> State
+		■ 동적 데이터를 사용할 때 사용
+		
+	> 클래스 컴포넌트
+		■ class App extends React.Componemt
+			→ App 클래스는 React.Component임을 의미
+		■  = React.Component를 상속받은 App 클래스
+		■  ★★★ 이 형식은 클래스형 컴포넌트를 사용하는 것에 필수적
+	
+		▶ class App extends React.Component {
+		   	render() {
+		    	return <h1>리액트 배우기</h1>
+		    }
+		   }
+		
+		   export default App;
+	
+		■ 또한 클래스형 컴포넌트의 특징은 이제 더 이상 함수형 컴포넌트가 아니 return을 하지 않음
+		■ 대신 React.Component에 있는 render 메소드를 사용
+		■ react는 자동적으로 모든 class component의 render method를 실행하고자 함
+	
+	> state 사용하기
+		■ state에 count라는 변수 생성 후 render
+		
+		▶ class App extends React.Component {
+			    state = {
+			        count : 2
+			    };
+			    
+			    render() {
+			        return <h1>리액트 배우기 {this.state.count}일차</h1>
+			    }
+			}
+			
+			export default App;
+			
+		→ render() 내에서 클래스의 state를 사용하기 위해 this를 사용해야 함
+		
+		- count값 증가/감소 버튼 구현
+
+		▶ class App extends React.Component {
+			    state = {
+			        count : 0
+			    };
+			    add = () => {
+			        console.log('증가')
+			    };
+			    minus = () => {
+			        console.log('감소')
+			    };
+			    
+			    render() {
+			        return (
+			            <div>
+			                <h1>리액트 배우기 {this.state.count}일차</h1>
+			                <button onClick = {this.add}>증가</button>
+			                <button onClick = {this.minus}>감소</button>
+			            </div>
+			        );
+			    }
+			}
+			
+			export default App;
+			
+ 	> state 값 변경하기
+	
+	▶ add = () => {
+		 this.state.count = 100
+	   };
+		
+	   minus = () => {
+		 this.state.count = -100
+	   };
+	
+		■  경고 발생 이유
+			- state의 값을 직접 변경하지 말고 setState()를 사용하여 변경하라는 뜻
+			- 즉, 저렇게 함수 내부에서 직접적으로 state의 값을 변경하는 경우 react는 render function을 refresh하지 않음
+	
+		■ 경고 없애기
+			- state값을 변경하기 위해 매번 state의 상태를 변경할 때마다 react가 render function을 호출하도록 해야 함 
+			→ setState() 사용
+			- state는 object라서 setState로 state 값을 변경해주기 위해서는 object 값을 주어야 함
+	
+	▶ add = () => {
+		 this.setState({count : this.state.count + 1})
+	   };
+		
+	   minus = () => {
+		 this.setState({count : this.state.count - 1})
+	   };
+	
+		→ 이 코드는 좋은 코드가 아님!!
+		→ state의 값에 의존적인 것
+	
+	▶ add = () => {
+		 this.setState(current => ({count : current.count + 1}))
+	   };
+		
+	   minus = () => {
+		 this.setState(current => ({count : current.count - 1}))
+	   };
+	
+		→ 이 코드가 좋은 코드!!
+		→ 외부 state의 값에 의존하지 않아서
