@@ -1,0 +1,70 @@
+[무비 리스트 만들기]
+
+	> JSON 파일의 링크 변경
+		■ https://yts.mx/api/v2/list_movies.json?sort_by=rating
+
+	> 데이터를 사용하는 Movie 컴포넌트로 만들기
+		1. src 폴더에 Movie.js 라는 새로운 자바스크립트 파일 생성
+		2. Movie.js에 함수형 컴포넌트 생성
+		
+		▶ import React from 'react';
+		    import PropTypes from 'prop-types';
+		
+		    function Movie() {
+		        return <h1></h1>
+		    }
+		
+		3. PropTypes를 정의해주기 위해 받아오는 json파일에서 사용 할 데이터가 무엇인지 체크 해야 함
+
+		▶ function Movie({id, year, title, summary, poster}) {
+			    return <h1>{title}</h1>
+			};
+			Movie.propTypes = {
+			    id : PropTypes.number.isRequired,
+			    title : PropTypes.string.isRequired,
+			    summary : PropTypes.string.isRequired,
+			    poster : PropTypes.string.isRequired
+			}
+			
+			export default Movie;
+
+	> Movie 컴포넌트로 데이터 전달 후 렌더링 하기
+
+		▶ class App extends React.Component {
+			  state = {
+			    isLoading : true, // 마운트 되자마자 true
+			    movies : []
+			  };
+			  getMovies = async() => {
+			    const {
+			      data : {
+			        data : {movies}
+			      }
+			    } = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=rating");
+			    this.setState({movies, isLoading : false})
+			  }
+			  componentDidMount() {
+			    this.getMovies();
+			  }
+			  render() {
+			    const {isLoading, movies} = this.state;
+			    return(
+			      <div>
+			        {isLoading ? "Loading" :
+			          movies.map(element => (
+			            <Movie
+			            key = {element.id}
+			            id = {element.id}
+			            year = {element.year}
+			            title = {element.title}
+			            summary = {element.summary}
+			            poster = {element.medium_cover_image}
+			            />
+			          )
+			        )}
+			      </div>
+			    );
+			  }
+			}
+			
+			export default App;

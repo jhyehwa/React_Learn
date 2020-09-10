@@ -1,0 +1,96 @@
+[Axios를 통한 State 변경하기]
+
+	> Axios를 사용해서 State 값 변경
+		- Axios는 node.js의 브라우저를 위한 http 통신 javascript 라이브러리
+
+		1. Axios 설치
+			■ 비주얼 스튜디오의 터미널
+				→ npm i axios
+				
+		2. yts API
+			■ 링크 : https://yts.mx/
+			→ API 클릭 → List Movies 클릭 → https://yts.mx/api/v2/list_movies.json 주소창에 입력 후 접속
+			
+				■ https://yts.mx/api/v2/list_movies.json 라는 주소는 종종 바뀜
+				→ 실습을 위해 미러 URL인 https://yts-proxy.now.sh/list_movies.json 주소 사용
+				
+	> Axios 사용
+		1. app.js 상단에 import
+			■ import axios from 'axios';
+
+		▶ class App extends React.Component {
+			  state = {
+			    isLoading : true
+			  }
+			  getMovies = async() => {
+			    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+			    console.log(movies.data.data.movies);
+			  }
+			  componentDidMount() {
+			    this.getMovies();
+			  }
+			  render() {
+			    const {isLoading} = this.state;
+			    return(
+			      <div>
+			        {isLoading ? "Loading" : "Ready"}
+			      </div>
+			    );
+			  }
+			}
+
+	> es6 스타일로 변경(동작은 동일)
+	
+		▶ class App extends React.Component {
+			  state = {
+			    isLoading : true
+			  }
+			  getMovies = async() => {
+			    const {
+			        data : {
+				    data : { movies }
+				}
+			    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+			    console.log(movies);
+			  }
+			  componentDidMount() {
+			    this.getMovies();
+			  }
+			  render() {
+			    const {isLoading} = this.state;
+			    return(
+			      <div>
+			        {isLoading ? "Loading" : "Ready"}
+			      </div>
+			    );
+			  }
+			}
+
+	> State 업데이트
+	
+		▶  class App extends React.Component {
+			  state = {
+			    isLoading : true, // 마운트 되자마자 true
+			    movies : []
+			  };
+			  getMovies = async() => {
+			    const {
+			      data : {
+			        data : {movies}
+			      }
+			    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+			    // console.log(movies);
+			    this.setState({movies, isLoading : false})
+			  }
+			  componentDidMount() {
+			    this.getMovies();
+			  }
+			  render() {
+			    const {isLoading} = this.state;
+			    return(
+			      <div>
+			        {isLoading ? "Loading" : "Ready"}
+			      </div>
+			    );
+			  }
+			}

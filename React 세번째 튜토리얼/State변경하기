@@ -1,0 +1,36 @@
+[State 변경하기]
+	
+	> 삼항연산자를 통해 브라우저에 값 출력
+		■ app.js
+		
+		▶ class App extends React.Component {
+			  state = {
+			    isLoading : true
+			  }
+			  render() {
+			    return(
+			      <div>
+			        {this.state.isLoading ? "Loading" : "Ready"}
+			      </div>
+			    );
+			  }
+			}
+			
+			→ 기본적으로 로딩이 되면 true 값을 가지는 isLoading라는 state를 정의
+				§ state를 삼항연산자를 통해 true면 Loading을 출력, false면 Ready가 출력
+			
+		■ 만약, this.state.isLoading을 지속적으로 써주는 것이 불편하면 코드 변경
+		
+		▶ class App extends React.Component {
+			  state = {
+			    isLoading : true // 마운트 되자마자 true
+			  }
+			  render() {
+			    const {isLoading} = this.state;
+			    return(
+			      <div>
+			        {isLoading ? "Loading" : "Ready"}
+			      </div>
+			    );
+			  }
+			}

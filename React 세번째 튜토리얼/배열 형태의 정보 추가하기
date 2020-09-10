@@ -1,0 +1,53 @@
+[배열 형태의 정보 추가하기]
+
+	- Movie.js의 PropsType에 추가
+		▶ function Movie({id, year, title, summary, poster, genres}) {
+			    return <div className="movie">
+			        <img src={poster} alt={title} title={title} />
+			    <div className="movie_data">
+			        <h3 className="movie_title">{title}</h3>
+			        <h5 className="movie_year">{year}</h5>
+			        <ul className="genres">
+			            {genres.map((element, index) => (
+			                <li key={index} className="genres_genre">{element}</li>
+			            ))}
+			        </ul>
+			        <p className="movie_summary">{summary}</p>
+			    </div>
+			    </div>
+			};
+			Movie.propTypes = {
+			    id : PropTypes.number.isRequired,
+			    title : PropTypes.string.isRequired,
+			    summary : PropTypes.string.isRequired,
+			    poster : PropTypes.string.isRequired
+			}
+			export default Movie;
+			
+	- App.js에 genres 정보 보내기
+	- App.js의 map 함수에 genres 추가
+
+		▶ <div className="movies">
+            {movies.map(element => (
+              <Movie 
+              key = {element.id}
+              id = {element.id}
+              year = {element.year}
+              title = {element.title}
+              summary = {element.summary}
+              poster = {element.medium_cover_image}
+              genres = {element.genres}
+              />
+            ))}
+			</div>
+
+	> 에러 발생
+		1. map 함수에 있는 각각의 element에는 각각의 key가 필요
+		2. map 함수는 자동으로 element의 번호를 리턴함
+		3. 이를 index 변수에 저장 후 key 값으로 넘김
+		
+		▶ <ul className="genres">
+	            {genres.map((element, index) => (
+	                <li key={index} className="genres_genre">{element}</li>
+	            ))}
+	        </ul>
