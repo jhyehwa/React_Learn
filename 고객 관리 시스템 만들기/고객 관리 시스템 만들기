@@ -1,0 +1,71 @@
+[고객 컴포넌트 만들기]
+
+	> 준비
+		1. 프롬프트 창에 create■react■app management
+		2. 비주얼 스튜디오 코드로 management 폴더 만들어짐
+		3. components 폴더 내에 Customer.js 파일 생성
+
+	> Customer.js 파일 작성
+		1. import와 export 숙지
+			§ import React from 'react';
+			
+			class Customer extends React.Component {
+			// Customer가 React.Component 클래스 상속 받음
+			
+			}
+			
+			export default Customer;
+			
+	> App.js 파일 작성
+
+		▶ import React from 'react';
+		    import Customer from './components/Customer';
+		    import './App.css';
+		  
+		    function App() {
+		        return (
+		            <Customer />
+		        );
+		    }
+		
+		    export default App;
+
+	> Props 사용
+		■ Customer.js에서 정혜화란 사람의 정보를 하드 코딩했지만, 실제 이랙트를 사용할 때는 Props로 상위 컴포넌트에서 하위 컴포넌트로 정보를 전달해주는 것이 일반적임
+
+		1. App.js
+		
+		▶ const customer = {
+			  'name' : '정혜화',
+			  'birthday' : '930614',
+			  'gender' : '여자',
+			  'color' : '보라색'
+			}
+			// 위의 정보를 Customer 컴포넌트에 전달해주어야 함
+			function App() {
+			  return (
+			    <Customer
+			      name = {customer.name}
+			      birthday = {customer.birthday}
+			      gender = {customer.gender}
+			      color = {customer.color}
+			    />
+			  );
+			}
+			export default App;
+			
+		2. Customer.js
+		
+		▶ class Customer extends React.Component {
+			    render() {
+			        return (
+			            <div>
+			                <h2>{this.props.name}</h2>
+			                <p>{this.props.birthday}</p>
+			                <p>{this.props.gender}</p>
+			                <p>{this.props.color}</p>
+			            </div>
+			        )
+			    }
+			}
+			export default Customer;

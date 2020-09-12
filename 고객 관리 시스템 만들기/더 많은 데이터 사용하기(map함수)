@@ -1,0 +1,73 @@
+[더 많은 데이터 사용하기(map함수)]
+
+	1. App.js에서 배열 형태의 데이트 사용하기
+		■ 기존에 있던 const customer을 변경해야 함
+		→ 배열 형태의 데이터로 변경
+		→ 배열 형태의 데이터이므로 이름도 customer에서 customers로 변경
+		
+		▶ const customers = [{
+			  'id' : 1,
+			  'image' : '이미지 주소',
+			  'name' : '곰돌이',
+			  'birthday' : '930614',
+			  'gender' : '여자',
+			  'color' : '보라색'
+			},
+			{
+			  'id' : 2,
+			  'image' : '이미지 주소',
+			  'name' : '피글렛',
+			  'birthday' : '930614',
+			  'gender' : '여자',
+			  'color' : '보라색'
+			}]
+		
+		■ 데이터가 배열 형태이기 때문에 Customer 컴포넌트에 Props로 데이터를 전달하던 형식도 변경해주어야 함
+		→ 회원 정보를 출력 하도록, 일일히 호출하고 마지막으로 하나의 <div> 태그로 묶음
+		
+		▶ function App() {
+			  return (
+			    <div>
+			      <Customer
+			        id = {customer[0].id}
+			        image = {customer[0].image}
+			        name = {customer[0].name}
+			        birthday = {customer[0].birthday}
+			        gender = {customer[0].gender}
+			        color = {customer[0].color}
+			      />
+			      <Customer
+			        id = {customer[1].id}
+			        image = {customer[1].image}
+			        name = {customer[1].name}
+			        birthday = {customer[1].birthday}
+			        gender = {customer[1].gender}
+			        color = {customer[1].color}
+			      />
+			    </div>
+			  );
+			}
+
+	> 데이터가 엄청나게 많다면 map 함수를 사용
+		
+		▶ function App() {
+			  return (
+			    <div> {
+			      customers.map(c => {
+			        return (
+			          <Customer
+			            id = {c.id}
+			            image = {c.image}
+			            name = {c.name}
+			            birthday = {c.birthday}
+			            gender = {c.gender}
+			            color = {c.color}
+			          />
+			        )
+			      })
+			    }
+			    </div>
+			  );
+			}
+			
+		→ map을 이용해 다수의 정보를 출력할 때는 key라는 이름의 Props를 사용해주어야 함

@@ -1,0 +1,6 @@
+[material UI 사용하기]
+
+	> material UI 사용
+		■ 쉽게 UI를 구현할 수 있게 해주는 material UI 사용
+		→ npm install @material-ui/core를 입력해 material UI를 설치
+		→ 설치 완료 → yarn start를 해 리액트를 실행하기
